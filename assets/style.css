@@ -1,0 +1,46 @@
+:root{--bg:#f7f4ee;--fg:#2b2b2b;--muted:#8a8578;--card:#fffdf8;--accent:#8c5a2b;--line:#e5dfd2;--link:#7a4f21}
+[data-theme="dark"]{--bg:#17181c;--fg:#d8d4c8;--muted:#8b8878;--card:#1f2126;--accent:#d0a35f;--line:#33363d;--link:#d0a35f}
+[data-theme="sepia"]{--bg:#f4e8d3;--fg:#4a3a24;--muted:#9b8a6b;--card:#faf1de;--accent:#8c5a2b;--line:#e0d0b2;--link:#7a4f21}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--fg);font-family:"Noto Serif SC","Source Han Serif SC","Songti SC",Georgia,serif;line-height:1.9;transition:background .25s,color .25s}
+a{color:var(--link);text-decoration:none}
+.topbar{position:sticky;top:0;z-index:10;display:flex;align-items:center;gap:12px;padding:10px 20px;background:var(--card);border-bottom:1px solid var(--line);font-size:14px}
+.topbar .brand{font-weight:700;letter-spacing:1px}
+.topbar .sp{flex:1}
+.topbar button{background:none;border:1px solid var(--line);color:var(--fg);border-radius:6px;padding:3px 10px;cursor:pointer;font-size:13px;font-family:inherit}
+.topbar button:hover{border-color:var(--accent);color:var(--accent)}
+.wrap{max-width:760px;margin:0 auto;padding:32px 22px 80px}
+.progress{position:fixed;top:0;left:0;height:2px;background:var(--accent);width:0;z-index:20;transition:width .1s}
+/* 书架 */
+.shelf h1{font-size:26px;margin:18px 0 6px}
+.shelf .sub{color:var(--muted);font-size:14px;margin-bottom:30px}
+.bookcard{display:flex;gap:22px;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:24px;transition:box-shadow .2s}
+.bookcard:hover{box-shadow:0 6px 24px rgba(0,0,0,.08)}
+.cover{flex:0 0 130px;height:186px;border-radius:6px;display:flex;align-items:center;justify-content:center;text-align:center;color:#f5ecd8;background:linear-gradient(150deg,#8c5a2b,#5e3a17);font-size:19px;font-weight:700;letter-spacing:3px;padding:14px;line-height:1.7;box-shadow:2px 3px 10px rgba(0,0,0,.25)}
+.bookcard .meta h2{font-size:20px;margin-bottom:4px}
+.bookcard .meta .au{color:var(--muted);font-size:14px;margin-bottom:10px}
+.bookcard .meta p{font-size:14px;color:var(--fg);opacity:.85;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.bookcard .meta .go{display:inline-block;margin-top:12px;font-size:14px;color:var(--accent)}
+/* 目录 */
+.toc .bk{font-size:13px;color:var(--muted)}
+.toc h1{font-size:26px;margin:14px 0 2px}
+.toc .au{color:var(--muted);font-size:14px;margin-bottom:8px}
+.toc .desc{font-size:14.5px;opacity:.85;margin:14px 0 8px}
+.toc .dl{font-size:13px;margin-bottom:26px}
+.part{font-size:15px;font-weight:700;color:var(--accent);margin:26px 0 6px;letter-spacing:1px}
+.chitem{display:block;padding:9px 12px;border-radius:8px;border-left:3px solid transparent}
+.chitem:hover{background:var(--card);border-left-color:var(--accent)}
+.chitem .t{font-size:16px}
+.chitem .s{font-size:12.5px;color:var(--muted)}
+/* 阅读页 */
+.reader h1{font-size:24px;line-height:1.5;margin:16px 0 4px}
+.reader .subtitle{font-size:14.5px;color:var(--muted);margin-bottom:6px}
+.reader .partlabel{font-size:12.5px;color:var(--accent);letter-spacing:1px}
+.reader .rule{border:none;border-top:1px solid var(--line);margin:22px 0}
+.reader p{font-size:var(--fs,18px);margin:0 0 1.15em;text-align:justify;text-indent:2em}
+.reader h3{font-size:calc(var(--fs,18px) + 1px);margin:1.6em 0 .8em;color:var(--accent);text-indent:0}
+.pn{display:flex;justify-content:space-between;gap:12px;margin-top:48px;font-size:14.5px}
+.pn a{padding:8px 14px;border:1px solid var(--line);border-radius:8px;background:var(--card);max-width:46%}
+.pn a:hover{border-color:var(--accent)}
+footer{margin-top:60px;text-align:center;color:var(--muted);font-size:12.5px}
+@media (max-width:560px){.bookcard{flex-direction:column}.cover{width:110px;height:156px}.wrap{padding:24px 16px 60px}}
