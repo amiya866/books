@@ -40,7 +40,7 @@ async function renderHome(version) {
   const featured = recentBook || localBook;
   const progress = state.progress[featured.id];
   const seconds = Object.values(state.progress).reduce((sum, item) => sum + (item.seconds || 0), 0);
-  const continueHref = `#/read/${encodeURIComponent(featured.id)}/${encodeURIComponent(progress?.chapter || 'preface')}`;
+  const continueHref = `#/read/${encodeURIComponent(featured.id)}/${encodeURIComponent(progress?.chapter || featured.firstChapter || 'preface')}`;
   const content = `<div class="page">${pageHead('YOUR QUIET CORNER', '今天，读点什么？', `${shelf.length} 本藏书 · ${library.sourceCount.toLocaleString()} 条书源 · 记录只留在本机`, `<a class="btn" href="#/profile">${icon('clock')}阅读记录</a>`)}
     ${searchForm()}
     <section class="continue-card"><a href="#/book/${encodeURIComponent(featured.id)}">${cover(featured, true)}</a><div class="continue-info"><div class="continue-label">${progress ? '继续阅读' : '从你的书架开始'}</div><h2 class="continue-title">${esc(featured.title)}</h2><div class="continue-meta">${esc(featured.author)}${progress ? ` · 已读 ${Math.round(progress.percent || 0)}% · ${timeAgo(progress.updatedAt)}` : ` · ${formatWords(featured.words)} · ${featured.chapterCount} 章`}</div><div class="progress-line"><span style="width:${progress?.percent || 0}%"></span></div></div><div class="continue-action"><a class="btn primary" href="${continueHref}">${progress ? '继续阅读' : '开始阅读'}${icon('arrow')}</a></div></section>
@@ -54,15 +54,16 @@ async function renderHome(version) {
 async function renderSearch(version, params) {
   const query = (params.get('q') || '').trim();
   const mode = params.get('mode') === 'fulltext' ? 'fulltext' : 'books';
-  const content = `<div class="page"><div class="search-page-head">${pageHead('DISCOVER', '找书', '搜书名与作者，也可以翻到书里找一句话')}${searchForm(query, mode)}<div class="search-tabs"><a class="search-tab${mode === 'books' ? ' active' : ''}" href="#/search?q=${encodeURIComponent(query)}&mode=books">书籍与在线书库</a><a class="search-tab${mode === 'fulltext' ? ' active' : ''}" href="#/search?q=${encodeURIComponent(query)}&mode=fulltext">《以日为鉴》全文</a></div></div><div id="search-content">${query ? '<div class="search-status"><span class="spinner"></span>正在检索…</div>' : `<div class="empty">${icon('search')}<div class="empty-title">从一个书名或一句话开始</div><p>本地搜索即时完成；在线找书需要连接公开书籍服务。<br>想找网文时，也可以到书源中心选择常用源站。</p></div>`}</div></div>`;
+  const content = `<div class="page"><div class="search-page-head">${pageHead('DISCOVER', '找书', '搜书名与作者，也可以翻到书里找一句话')}${searchForm(query, mode)}<div class="search-tabs"><a class="search-tab${mode === 'books' ? ' active' : ''}" href="#/search?q=${encodeURIComponent(query)}&mode=books">书籍与在线书库</a><a class="search-tab${mode === 'fulltext' ? ' active' : ''}" href="#/search?q=${encodeURIComponent(query)}&mode=fulltext">全站书内全文</a></div></div><div id="search-content">${query ? '<div class="search-status"><span class="spinner"></span>正在检索…</div>' : `<div class="empty">${icon('search')}<div class="empty-title">从一个书名或一句话开始</div><p>本地搜索即时完成；在线找书需要连接公开书籍服务。<br>想找网文时，也可以到书源中心选择常用源站。</p></div>`}</div></div>`;
   shell(content, 'search');
   if (!query) return;
 
   if (mode === 'fulltext') {
-    const book = await loadBook('yiriweijian');
+    const library = await loadLibrary();
+    const books = await Promise.all(library.books.map(item => loadBook(item.id)));
     if (version !== routeVersion) return;
-    const results = fullTextSearch(book, query);
-    $('#search-content').innerHTML = `<div class="search-status">在《${esc(book.title)}》中找到 ${results.length}${results.length === 40 ? '+' : ''} 处相关内容</div>${results.length ? `<div class="result-list">${results.map(result => `<a class="text-result" href="#/read/${book.id}/${encodeURIComponent(result.chapter.id)}?q=${encodeURIComponent(query)}"><div class="text-result-chapter">${esc(result.chapter.title)}</div><div class="text-result-snippet">${esc(result.prefix)}${highlight(result.text, query)}${esc(result.suffix)}</div></a>`).join('')}</div>` : emptyBlock('没有找到这句话', '试试缩短关键词，或回到书籍搜索。')}`;
+    const results = books.flatMap(book => fullTextSearch(book, query).map(result => ({ ...result, book }))).slice(0, 40);
+    $('#search-content').innerHTML = `<div class="search-status">在 ${books.length} 本藏书中找到 ${results.length}${results.length === 40 ? '+' : ''} 处相关内容</div>${results.length ? `<div class="result-list">${results.map(result => `<a class="text-result" href="#/read/${result.book.id}/${encodeURIComponent(result.chapter.id)}?q=${encodeURIComponent(query)}"><div class="text-result-chapter">${esc(result.book.title)} · ${esc(result.chapter.title)}</div><div class="text-result-snippet">${esc(result.prefix)}${highlight(result.text, query)}${esc(result.suffix)}</div></a>`).join('')}</div>` : emptyBlock('没有找到这句话', '试试缩短关键词，或回到书籍搜索。')}`;
     return;
   }
 

@@ -17,7 +17,8 @@ export const timeAgo = value => {
 const STATE_KEY = 'desk_state_v1';
 const CUSTOM_SOURCES_KEY = 'desk_custom_sources_v1';
 const defaults = {
-  shelf: ['yiriweijian'],
+  schemaVersion: 2,
+  shelf: ['yiriweijian', 'mindfulness'],
   onlineBooks: [],
   progress: {},
   bookmarks: [],
@@ -28,11 +29,13 @@ const defaults = {
 function readState() {
   try {
     const saved = JSON.parse(localStorage.getItem(STATE_KEY) || '{}');
+    const shelf = Array.isArray(saved.shelf) ? [...saved.shelf] : [...defaults.shelf];
+    if ((saved.schemaVersion || 1) < 2 && !shelf.includes('mindfulness')) shelf.push('mindfulness');
     return {
       ...defaults,
       ...saved,
       settings: { ...defaults.settings, ...(saved.settings || {}) },
-      shelf: Array.isArray(saved.shelf) ? saved.shelf : defaults.shelf,
+      shelf,
       onlineBooks: Array.isArray(saved.onlineBooks) ? saved.onlineBooks : [],
       bookmarks: Array.isArray(saved.bookmarks) ? saved.bookmarks : [],
       favoriteSources: Array.isArray(saved.favoriteSources) ? saved.favoriteSources : [],
