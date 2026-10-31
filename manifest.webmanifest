@@ -1,0 +1,11 @@
+{
+  "name": "书桌 · 找书与阅读",
+  "short_name": "书桌",
+  "description": "查找书籍、管理书源，安静读完一本书。",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#f6f7f4",
+  "theme_color": "#28785c",
+  "lang": "zh-CN",
+  "icons": [{"src": "assets/icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable"}]
+}
