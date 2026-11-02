@@ -17,8 +17,8 @@ export const timeAgo = value => {
 const STATE_KEY = 'desk_state_v1';
 const CUSTOM_SOURCES_KEY = 'desk_custom_sources_v1';
 const defaults = {
-  schemaVersion: 2,
-  shelf: ['yiriweijian', 'mindfulness'],
+  schemaVersion: 3,
+  shelf: ['yiriweijian', 'mindfulness', 'dentist'],
   onlineBooks: [],
   progress: {},
   bookmarks: [],
@@ -31,6 +31,7 @@ function readState() {
     const saved = JSON.parse(localStorage.getItem(STATE_KEY) || '{}');
     const shelf = Array.isArray(saved.shelf) ? [...saved.shelf] : [...defaults.shelf];
     if ((saved.schemaVersion || 1) < 2 && !shelf.includes('mindfulness')) shelf.push('mindfulness');
+    if ((saved.schemaVersion || 1) < 3 && !shelf.includes('dentist')) shelf.push('dentist');
     return {
       ...defaults,
       ...saved,

@@ -1,8 +1,8 @@
-const CACHE = 'desk-library-v2';
+const CACHE = 'desk-library-v3';
 const CORE = [
   './', 'index.html', 'manifest.webmanifest',
   'assets/app.css', 'assets/core.js', 'assets/app.js', 'assets/reader.js', 'assets/icon.svg',
-  'data/library.json', 'data/books/yiriweijian.json', 'data/books/mindfulness.json'
+  'data/library.json', 'data/books/yiriweijian.json', 'data/books/mindfulness.json', 'data/books/dentist.json'
 ];
 
 self.addEventListener('install', event => {
