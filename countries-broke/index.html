@@ -1,0 +1,217 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="《国家为什么会破产：大周期》原创中文导读读书站：十九章导读、主题阅读、七日计划、手机听书与本地笔记。">
+  <title>国家为什么会破产：大周期 · 读书站</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#" data-home aria-label="返回首页">
+      <span class="brand-mark">债</span>
+      <span>国家为什么会破产<small>大周期 · 读书站</small></span>
+    </a>
+    <nav class="main-nav" aria-label="主导航">
+      <a href="#chapters" data-home-section="chapters">十九章导读</a>
+      <a href="#paths" data-home-section="paths">主题路径</a>
+      <a href="#plan" data-home-section="plan">七日计划</a>
+    </nav>
+    <div class="top-actions">
+      <button class="text-button" id="listenBtn">◖ 听书</button>
+      <button class="icon-button" id="searchBtn" aria-label="搜索，快捷键斜杠" title="搜索 /">⌕</button>
+      <button class="text-button" id="notesBtn">我的笔记 <span id="noteCount" class="count">0</span></button>
+      <button class="icon-button" id="themeBtn" aria-label="切换夜间模式" title="切换夜间模式">◐</button>
+    </div>
+  </header>
+
+  <main>
+    <section id="homeView">
+      <div class="hero page-shell">
+        <div class="hero-copy">
+          <p class="eyebrow">RAY DALIO · READING GUIDE</p>
+          <h1>国家为什么<br><span>会破产</span></h1>
+          <p class="hero-subtitle">看清债务的潮汐，<br>理解秩序的更替。</p>
+          <p class="hero-desc">从大债务周期到五股力量，一份把模型、历史与现实分开阅读的地图。十九章导读，五十七个值得校准的问题。</p>
+          <div class="hero-actions">
+            <button class="primary-button" id="startBtn">开始阅读 <span>→</span></button>
+            <button class="secondary-button" id="randomBtn">今日一问</button>
+            <a class="secondary-button source-button" href="https://economicprinciples.org/downloads/How-Countries-Go-Broke.pdf" target="_blank" rel="noopener">官方英文 PDF ↗</a>
+          </div>
+          <div class="hero-stats" aria-label="网站内容统计">
+            <div><strong>19</strong><span>原书章节</span></div>
+            <div><strong>57</strong><span>阅读锚点</span></div>
+            <div><strong>7</strong><span>每日计划</span></div>
+          </div>
+        </div>
+        <div class="hero-art" aria-hidden="true">
+          <div class="sun-disc"></div>
+          <div class="orbit orbit-one"></div>
+          <div class="orbit orbit-two"></div>
+          <div class="book-object">
+            <div class="book-spine"></div>
+            <div class="book-cover">
+              <span class="cover-author">瑞 · 达利欧</span>
+              <span class="cover-title">国家为什么<br>会破产</span>
+              <span class="cover-en">HOW COUNTRIES GO BROKE<br>THE BIG CYCLE · READING GUIDE</span>
+              <span class="cover-seal">读</span>
+            </div>
+          </div>
+          <span class="art-note note-one">债务</span>
+          <span class="art-note note-two">货币</span>
+          <span class="art-note note-three">秩序</span>
+        </div>
+      </div>
+
+      <div class="progress-band">
+        <div class="page-shell progress-inner">
+          <div>
+            <span class="progress-label">我的阅读旅程</span>
+            <strong id="progressText">尚未开始</strong>
+          </div>
+          <div class="progress-track" aria-label="章节阅读进度"><span id="progressBar"></span></div>
+          <button class="quiet-button" id="continueBtn">从第一章开始 →</button>
+        </div>
+      </div>
+
+      <section class="daily-question page-shell" id="dailyQuestion" aria-live="polite">
+        <div class="question-number">一问</div>
+        <div class="daily-content">
+          <p class="section-kicker">PAUSE & ASK</p>
+          <h2 id="dailyTitle">国家也会像家庭一样，被债务压垮吗？</h2>
+          <p id="dailyGuide">先别急着用家庭账本类推国家。货币发行权、债务计价货币和生产能力，都会改变问题的答案。</p>
+          <button class="inline-link" id="dailyOpen">进入相关章节 →</button>
+        </div>
+        <button class="refresh-button" id="refreshQuestion" aria-label="换一个问题" title="换一个问题">↻</button>
+      </section>
+
+      <section class="content-section page-shell" id="chapters">
+        <div class="section-heading">
+          <div><p class="section-kicker">THE NINETEEN CHAPTERS</p><h2>十九章，拆开一台债务机器</h2></div>
+          <p>章节名称依中文版公开目录整理；<br>导读、问题与评论为本站原创内容。</p>
+        </div>
+        <div class="chapter-grid" id="chapterGrid"></div>
+      </section>
+
+      <section class="content-section paths-section" id="paths">
+        <div class="page-shell">
+          <div class="section-heading light-heading">
+            <div><p class="section-kicker">READ BY YOUR QUESTION</p><h2>不必顺序读，从问题出发</h2></div>
+            <p>选择你想弄清的问题，<br>让历史回应现实。</p>
+          </div>
+          <div class="path-grid" id="pathGrid"></div>
+        </div>
+      </section>
+
+      <section class="content-section page-shell" id="plan">
+        <div class="section-heading">
+          <div><p class="section-kicker">A SEVEN-DAY JOURNEY</p><h2>七日，读完框架，保留分歧</h2></div>
+          <p>每天三十分钟。<br>读一组章节，校准一个判断。</p>
+        </div>
+        <div class="plan-list" id="planList"></div>
+      </section>
+
+      <section class="book-info page-shell">
+        <div class="mini-cover">国家为什么<br>会破产</div>
+        <div class="bibliography">
+          <p class="section-kicker">ABOUT THIS EDITION</p>
+          <h2>关于这本书</h2>
+          <p>《国家为什么会破产：大周期》从大债务周期出发，讨论中央政府与中央银行如何陷入危机，并把货币、内部政治、地缘政治、自然力量与技术变化放进同一个整体框架。</p>
+          <dl>
+            <div><dt>作者</dt><dd>瑞 · 达利欧（Ray Dalio）</dd></div>
+            <div><dt>译者</dt><dd>立雯</dd></div>
+            <div><dt>出版</dt><dd>中信出版集团 · 2025 年 6 月</dd></div>
+            <div><dt>版本</dt><dd>精装 · ISBN 9787521776829</dd></div>
+          </dl>
+          <div class="source-links">
+            <a href="https://economicprinciples.org/downloads/How-Countries-Go-Broke.pdf" target="_blank" rel="noopener">作者官网英文 PDF ↗</a>
+            <a href="https://book.douban.com/subject/37370552/" target="_blank" rel="noopener">中文书目与目录 ↗</a>
+            <a href="https://www.guancha.cn/XuGao/2025_07_26_784350.shtml" target="_blank" rel="noopener">徐高的批评文章 ↗</a>
+          </div>
+          <p class="copyright-note">本站为原创导读与读书笔记工具，不提供中文全文，也不镜像英文 PDF。官方 PDF 的著作权与使用条件由作者及出版方保留；导读不能替代原书，亦不构成投资建议。</p>
+        </div>
+      </section>
+    </section>
+
+    <section id="readerView" class="reader-view page-shell" hidden>
+      <div class="reader-topline">
+        <button class="back-button" id="backHome">← 返回阅读地图</button>
+        <div class="reader-tools">
+          <button id="readerListen" aria-label="播放本章">◖ 听本章</button>
+          <button id="fontDown" aria-label="减小正文字号">A−</button>
+          <button id="fontUp" aria-label="增大正文字号">A＋</button>
+          <button id="readerSearch">⌕ 搜索</button>
+        </div>
+      </div>
+      <div class="reader-layout">
+        <aside class="chapter-sidebar">
+          <p class="section-kicker">CONTENTS</p>
+          <div id="sidebarChapters"></div>
+          <div class="sidebar-progress"><span id="sideProgressText"></span><div class="progress-track"><span id="sideProgressBar"></span></div></div>
+        </aside>
+        <article class="chapter-content" id="chapterContent"></article>
+        <aside class="reader-aside">
+          <div class="aside-card">
+            <p class="section-kicker">CHAPTER NOTE</p>
+            <h3>留下你的判断</h3>
+            <p>笔记自动保存在本机，不会上传。</p>
+            <button class="secondary-button" id="chapterNoteBtn">写本章笔记</button>
+          </div>
+          <div class="aside-card aside-quote">
+            <span>阅读提示</span>
+            <p>不要先问结论是否惊人，先问模型解释了什么，又遗漏了什么。</p>
+          </div>
+        </aside>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="page-shell footer-inner">
+      <span>国家为什么会破产 · 大周期读书站</span>
+      <span>愿每一次判断，都先分清事实、模型与立场。</span>
+      <button id="exportBtn">导出我的笔记 ↓</button>
+    </div>
+  </footer>
+
+  <dialog id="searchDialog" class="search-dialog">
+    <div class="dialog-head"><h2>寻找一个阅读锚点</h2><button class="dialog-close" data-close="searchDialog" aria-label="关闭">×</button></div>
+    <input id="searchInput" type="search" placeholder="输入：债务、央行、黄金、3%方案……" autocomplete="off">
+    <div id="searchResults" class="search-results"></div>
+  </dialog>
+
+  <dialog id="notesDialog" class="notes-dialog">
+    <div class="dialog-head"><h2 id="notesTitle">我的阅读笔记</h2><button class="dialog-close" data-close="notesDialog" aria-label="关闭">×</button></div>
+    <p class="notes-hint">内容仅保存在当前浏览器。更换设备前，请先导出笔记。</p>
+    <div id="notesEditor"></div>
+  </dialog>
+
+  <section class="audio-player" id="audioPlayer" aria-label="听书播放器" hidden>
+    <div class="audio-info">
+      <span id="audioKicker">正在聆听</span>
+      <strong id="audioTitle">大债务周期概述</strong>
+      <small id="audioProgress">第 1 / 4 段</small>
+    </div>
+    <div class="audio-controls">
+      <button id="audioPrev" aria-label="上一段">‹</button>
+      <button id="audioPlay" class="audio-play" aria-label="播放或暂停">❚❚</button>
+      <button id="audioNext" aria-label="下一段">›</button>
+      <button id="audioStop" aria-label="停止听书">×</button>
+    </div>
+    <div class="audio-settings">
+      <span id="voiceSelect" class="audio-voice">晓晓 · 中文自然女声</span>
+      <select id="rateSelect" aria-label="播放语速">
+        <option value="0.85">0.85× 舒缓</option>
+        <option value="1" selected>1.0× 自然</option>
+        <option value="1.2">1.2× 稍快</option>
+        <option value="1.5">1.5× 快速</option>
+      </select>
+    </div>
+    <div class="audio-note">预生成中文音频 · 手机可播放 · 免费</div>
+    <audio id="audioElement" preload="none" playsinline></audio>
+  </section>
+  <div class="toast" id="toast" role="status"></div>
+  <script src="app.js?v=1"></script>
+</body>
+</html>
