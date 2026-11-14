@@ -157,80 +157,65 @@ function exportNotes(){
   const url=URL.createObjectURL(new Blob([text],{type:"text/markdown;charset=utf-8"})),a=document.createElement("a");
   a.href=url;a.download="八万四千问_阅读笔记.md";a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);toast("笔记已导出");
 }
-const listen = {segments:[],index:0,active:false,paused:false,session:0,voices:[]};
-function audioSupported(){return "speechSynthesis" in window && "SpeechSynthesisUtterance" in window}
-function loadVoices(){
-  if(!audioSupported()){$("#voiceSelect").innerHTML="<option>当前浏览器不支持语音</option>";return}
-  const all=window.speechSynthesis.getVoices();
-  const preferred=["xiaoxiao","xiaoyi","huihui","yaoyao","yunxia","tingting","meijia","google 普通话","google 國語"];
-  listen.voices=all.filter(v=>/^(zh|cmn)/i.test(v.lang)||/chinese|中文|普通话|國語/i.test(v.name)).sort((a,b)=>{
-    const rank=v=>{const i=preferred.findIndex(n=>v.name.toLowerCase().includes(n));return i<0?99:i};
-    return rank(a)-rank(b)||a.name.localeCompare(b.name,"zh-CN");
-  });
-  const saved=store.get("voice",""),options=listen.voices.length?listen.voices:[{name:"系统默认中文语音",voiceURI:"",lang:"zh-CN"}];
-  $("#voiceSelect").innerHTML=options.map(v=>`<option value="${v.voiceURI}" ${v.voiceURI===saved?'selected':''}>${v.name} · ${v.lang}</option>`).join("");
-}
-function buildAudioSegments(){
-  const c=chapter(currentChapter);
-  listen.segments=[`${c.title}。${c.intro}`,...c.questions.map(q=>`${q.q}。${q.a}。留给自己。${q.ask}`)];
-}
+const listen = {index:0,active:false,paused:false,session:0,length:4};
+const audioElement=$("#audioElement");
+function audioSupported(){return !!audioElement&&audioElement.canPlayType("audio/mpeg")!==""}
 function renderAudio(){
   $("#audioTitle").textContent=chapter(currentChapter).title;
-  $("#audioProgress").textContent=`第 ${listen.index+1} / ${listen.segments.length} 段`;
+  $("#audioProgress").textContent=`第 ${listen.index+1} / ${listen.length} 段`;
   $("#audioPlay").textContent=listen.active&&!listen.paused?"❚❚":"▶";
   $("#audioPlay").setAttribute("aria-label",listen.active&&!listen.paused?"暂停":"播放");
   $("#audioKicker").textContent=listen.paused?"已暂停":"正在聆听";
 }
-function speakCurrent(){
+function updateMediaSession(){
+  if(!("mediaSession" in navigator))return;
+  navigator.mediaSession.metadata=new MediaMetadata({
+    title:`${chapter(currentChapter).title} · 第 ${listen.index+1} 段`,
+    artist:"八万四千问 · 中文导读",
+    album:"晓晓自然女声"
+  });
+}
+async function playCurrent(){
   if(!listen.active)return;
   const session=++listen.session;
-  window.speechSynthesis.cancel();
-  const utterance=new SpeechSynthesisUtterance(listen.segments[listen.index]);
-  const voice=listen.voices.find(v=>v.voiceURI===$("#voiceSelect").value);
-  if(voice)utterance.voice=voice;
-  utterance.lang=voice?.lang||"zh-CN";
-  utterance.rate=Number($("#rateSelect").value);
-  utterance.pitch=1.03;
-  utterance.onend=()=>{
-    if(session!==listen.session||!listen.active||listen.paused)return;
-    if(listen.index<listen.segments.length-1){listen.index++;renderAudio();speakCurrent()}
-    else{stopAudio();toast("本章播放完毕")}
-  };
-  utterance.onerror=e=>{
-    if(session!==listen.session||["canceled","interrupted"].includes(e.error))return;
+  audioElement.src=`audio/chapter-${String(currentChapter).padStart(2,"0")}-segment-${listen.index+1}.mp3`;
+  audioElement.playbackRate=Number($("#rateSelect").value);
+  audioElement.load();
+  renderAudio();updateMediaSession();
+  try{await audioElement.play()}
+  catch(error){
+    if(session!==listen.session||!listen.active)return;
     listen.active=false;listen.paused=false;renderAudio();
-    toast("语音未能播放，请换用最新版 Edge 或 Chrome");
-  };
-  renderAudio();
-  window.speechSynthesis.speak(utterance);
+    toast("音频未能播放，请检查网络后重试");
+  }
 }
 function startListening(index=0){
-  if(!audioSupported()){toast("当前浏览器不支持听书，请使用最新版 Edge 或 Chrome");return}
+  if(!audioSupported()){toast("当前浏览器无法播放音频，请使用最新版浏览器");return}
   if($("#readerView").hidden)openChapter(currentChapter);
-  buildAudioSegments();
-  listen.index=Math.max(0,Math.min(index,listen.segments.length-1));
+  listen.index=Math.max(0,Math.min(index,listen.length-1));
   listen.active=true;listen.paused=false;$("#audioPlayer").hidden=false;
-  speakCurrent();
+  playCurrent();
 }
 function toggleListening(){
   if(!listen.active){startListening();return}
-  if(listen.paused){listen.paused=false;window.speechSynthesis.resume();renderAudio()}
-  else{listen.paused=true;window.speechSynthesis.pause();renderAudio()}
+  if(listen.paused||audioElement.paused){listen.paused=false;audioElement.play().catch(()=>toast("请再次点击播放"))}
+  else audioElement.pause();
+  renderAudio();
 }
 function stopAudio(){
   listen.session++;listen.active=false;listen.paused=false;
-  if(audioSupported())window.speechSynthesis.cancel();
+  audioElement.pause();audioElement.removeAttribute("src");audioElement.load();
   if($("#audioPlayer"))$("#audioPlayer").hidden=true;
+  if("mediaSession" in navigator)navigator.mediaSession.metadata=null;
 }
 function skipAudio(delta){
   if(!listen.active){startListening(delta>0?0:3);return}
-  listen.index=Math.max(0,Math.min(listen.index+delta,listen.segments.length-1));
-  listen.paused=false;speakCurrent();
+  listen.index=Math.max(0,Math.min(listen.index+delta,listen.length-1));
+  listen.paused=false;playCurrent();
 }
 function restartAudioSetting(){
-  store.set("voice",$("#voiceSelect").value);
   store.set("rate",$("#rateSelect").value);
-  if(listen.active){listen.paused=false;speakCurrent()}
+  audioElement.playbackRate=Number($("#rateSelect").value);
 }
 function bind(){
   $("#startBtn").addEventListener("click",()=>openChapter(readChapters.length?Math.min(10,Math.max(...readChapters)+1):1));
@@ -255,8 +240,23 @@ function bind(){
   $("#audioStop").addEventListener("click",stopAudio);
   $("#audioPrev").addEventListener("click",()=>skipAudio(-1));
   $("#audioNext").addEventListener("click",()=>skipAudio(1));
-  $("#voiceSelect").addEventListener("change",restartAudioSetting);
   $("#rateSelect").addEventListener("change",restartAudioSetting);
+  audioElement.addEventListener("play",()=>{listen.paused=false;renderAudio()});
+  audioElement.addEventListener("pause",()=>{if(listen.active&&!audioElement.ended){listen.paused=true;renderAudio()}});
+  audioElement.addEventListener("ended",()=>{
+    if(!listen.active)return;
+    if(listen.index<listen.length-1){listen.index++;playCurrent()}
+    else{stopAudio();toast("本章播放完毕")}
+  });
+  audioElement.addEventListener("error",()=>{
+    if(!listen.active)return;
+    listen.active=false;listen.paused=false;renderAudio();
+    toast("音频加载失败，请检查网络后重试");
+  });
+  if("mediaSession" in navigator){
+    const actions={play:toggleListening,pause:()=>audioElement.pause(),stop:stopAudio,previoustrack:()=>skipAudio(-1),nexttrack:()=>skipAudio(1)};
+    Object.entries(actions).forEach(([action,handler])=>{try{navigator.mediaSession.setActionHandler(action,handler)}catch{}});
+  }
   document.addEventListener("keydown",e=>{if(e.key==="/"&&!$("dialog[open]")&&!["INPUT","TEXTAREA"].includes(document.activeElement.tagName)){e.preventDefault();openSearch()}if(e.key==="Escape")$$("dialog[open]").forEach(d=>d.close())});
   $$("dialog").forEach(d=>d.addEventListener("click",e=>{if(e.target===d)d.close()}));
 }
@@ -264,7 +264,7 @@ function applyTheme(){document.documentElement.dataset.theme=dark?"dark":"light"
 function init(){
   applyTheme();renderChapters();renderPaths();renderPlans();renderSidebar();renderProgress();bind();randomQuestion();
   $("#rateSelect").value=store.get("rate","1");
-  loadVoices();if(audioSupported())window.speechSynthesis.onvoiceschanged=loadVoices;
+  audioElement.playbackRate=Number($("#rateSelect").value);
   const match=location.hash.match(/^#chapter-(\d+)/);if(match)openChapter(match[1]);
 }
 init();

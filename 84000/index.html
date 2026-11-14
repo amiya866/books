@@ -198,7 +198,7 @@
       <button id="audioStop" aria-label="停止听书">×</button>
     </div>
     <div class="audio-settings">
-      <select id="voiceSelect" aria-label="选择中文语音"><option>正在载入语音…</option></select>
+      <span id="voiceSelect" class="audio-voice">晓晓 · 中文自然女声</span>
       <select id="rateSelect" aria-label="播放语速">
         <option value="0.85">0.85× 舒缓</option>
         <option value="1" selected>1.0× 自然</option>
@@ -206,9 +206,10 @@
         <option value="1.5">1.5× 快速</option>
       </select>
     </div>
-    <div class="audio-note">浏览器中文自然语音 · 非真人声线克隆</div>
+    <div class="audio-note">预生成中文音频 · 手机可播放 · 免费</div>
+    <audio id="audioElement" preload="none" playsinline></audio>
   </section>
   <div class="toast" id="toast" role="status"></div>
-  <script src="app.js"></script>
+  <script src="app.js?v=mp3-1"></script>
 </body>
 </html>
