@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-27T09:34:41+08:00",
+  "generated_at": "2026-11-28T08:29:06+08:00",
   "source": "https://abysstrades.xyz",
   "items": [
     {
@@ -68,63 +68,64 @@
         "bias": "偏空"
       },
       "url": "https://abysstrades.xyz/#detail?symbol=AU",
-      "stale": false
+      "stale": true,
+      "fetch_error": "Command '['curl', '-L', '--max-time', '25', '--retry', '2', '-sS', 'https://abysstrades.xyz/data/symbols/AU.json']' timed out after 90 seconds"
     },
     {
       "symbol": "AG",
       "name": "沪银",
       "sector": "贵金属",
-      "updated_at": "2026-11-27T09:19:29+08:00",
+      "updated_at": "2026-11-27T22:11:15+00:00",
       "quote": {
-        "last": 9695.0,
-        "change_pct": 0.0388984,
-        "time": "2026-11-27 09:19:10",
-        "open_interest": 309038.0,
-        "volume": 848138.0
+        "last": 10344.0,
+        "change_pct": 0.0374085,
+        "time": "2026-11-30 02:30:00",
+        "open_interest": 293221.0,
+        "volume": 1282384.0
       },
-      "score": -1.47,
+      "score": -1.55,
       "bias": "偏空",
       "tone": "down",
       "support": [
-        9689.0,
-        9505.0
+        10081.0,
+        10039.0
       ],
       "resistance": [
-        9803.0,
-        9894.0
+        10348.0,
+        10613.0
       ],
       "long": {
         "priority": "次选",
         "status": "未触发",
-        "trigger": 9818.0,
-        "trigger_text": "60分钟收盘站上 9,818，随后回踩不破",
+        "trigger": 10364.0,
+        "trigger_text": "60分钟收盘站上 10,364，随后回踩不破",
         "entry": [
-          9786.0,
-          9821.0
+          10329.0,
+          10368.0
         ],
-        "stop": 9674.0,
+        "stop": 10066.0,
         "targets": [
-          10013.0,
-          10145.0
+          10761.0,
+          11033.0
         ],
-        "invalid": "60分钟重新跌破 9,674",
+        "invalid": "60分钟重新跌破 10,066",
         "confirmation": "突破不是买点本身；回踩确认后才执行"
       },
       "short": {
         "priority": "优先观察",
         "status": "未触发",
-        "trigger": 9674.0,
-        "trigger_text": "60分钟收盘跌破 9,674，随后反抽不过",
+        "trigger": 10066.0,
+        "trigger_text": "60分钟收盘跌破 10,066，随后反抽不过",
         "entry": [
-          9671.0,
-          9706.0
+          10062.0,
+          10100.0
         ],
-        "stop": 9818.0,
+        "stop": 10364.0,
         "targets": [
-          9479.0,
-          9347.0
+          9669.0,
+          9397.0
         ],
-        "invalid": "60分钟重新站上 9,818",
+        "invalid": "60分钟重新站上 10,364",
         "confirmation": "破位不是卖点本身；反抽确认后才执行"
       },
       "ari": {
@@ -132,7 +133,7 @@
         "momentum": "空头动量扩张"
       },
       "daily": {
-        "score": -2.06,
+        "score": -2.28,
         "bias": "偏空"
       },
       "url": "https://abysstrades.xyz/#detail?symbol=AG",
@@ -142,57 +143,57 @@
       "symbol": "CU",
       "name": "沪铜",
       "sector": "有色",
-      "updated_at": "2026-11-27T09:19:39+08:00",
+      "updated_at": "2026-11-27T22:11:17+00:00",
       "quote": {
-        "last": 89480.0,
-        "change_pct": 0.0079982,
-        "time": "2026-11-27 09:19:10",
-        "open_interest": 215828.0,
-        "volume": 86819.0
+        "last": 92590.0,
+        "change_pct": 0.008386,
+        "time": "2026-11-30 01:00:00",
+        "open_interest": 194861.0,
+        "volume": 133193.0
       },
-      "score": -1.46,
+      "score": -1.31,
       "bias": "偏空",
       "tone": "down",
       "support": [
-        89460.0,
-        89020.0
+        91180.0,
+        90330.0
       ],
       "resistance": [
-        90040.0,
-        90300.0
+        93230.0,
+        95000.0
       ],
       "long": {
         "priority": "次选",
         "status": "未触发",
-        "trigger": 90130.0,
-        "trigger_text": "60分钟收盘站上 90,130，随后回踩不破",
+        "trigger": 93330.0,
+        "trigger_text": "60分钟收盘站上 93,330，随后回踩不破",
         "entry": [
-          89920.0,
-          90160.0
+          93100.0,
+          93360.0
         ],
-        "stop": 89300.0,
+        "stop": 91080.0,
         "targets": [
-          91280.0,
-          92060.0
+          96330.0,
+          98380.0
         ],
-        "invalid": "60分钟重新跌破 89,300",
+        "invalid": "60分钟重新跌破 91,080",
         "confirmation": "突破不是买点本身；回踩确认后才执行"
       },
       "short": {
         "priority": "优先观察",
         "status": "未触发",
-        "trigger": 89360.0,
-        "trigger_text": "60分钟收盘跌破 89,360，随后反抽不过",
+        "trigger": 91080.0,
+        "trigger_text": "60分钟收盘跌破 91,080，随后反抽不过",
         "entry": [
-          89330.0,
-          89580.0
+          91050.0,
+          91320.0
         ],
-        "stop": 90200.0,
+        "stop": 93330.0,
         "targets": [
-          88190.0,
-          87410.0
+          88080.0,
+          86030.0
         ],
-        "invalid": "60分钟重新站上 90,200",
+        "invalid": "60分钟重新站上 93,330",
         "confirmation": "破位不是卖点本身；反抽确认后才执行"
       },
       "ari": {
@@ -200,7 +201,7 @@
         "momentum": "空头动量扩张"
       },
       "daily": {
-        "score": -2.04,
+        "score": -1.72,
         "bias": "偏空"
       },
       "url": "https://abysstrades.xyz/#detail?symbol=CU",
@@ -210,57 +211,57 @@
       "symbol": "AL",
       "name": "沪铝",
       "sector": "有色",
-      "updated_at": "2026-11-27T09:19:29+08:00",
+      "updated_at": "2026-11-27T22:11:15+00:00",
       "quote": {
-        "last": 21030.0,
-        "change_pct": 0.0014286,
-        "time": "2026-11-27 09:19:18",
-        "open_interest": 228694.0,
-        "volume": 100600.0
+        "last": 21205.0,
+        "change_pct": -0.0046937,
+        "time": "2026-11-30 01:00:00",
+        "open_interest": 212849.0,
+        "volume": 124133.0
       },
-      "score": -2.08,
+      "score": -1.89,
       "bias": "偏空",
       "tone": "down",
       "support": [
-        21000.0,
-        20580.0
+        21155.0,
+        21090.0
       ],
       "resistance": [
-        21090.0,
-        21140.0
+        21310.0,
+        21610.0
       ],
       "long": {
         "priority": "次选",
         "status": "未触发",
-        "trigger": 21105.0,
-        "trigger_text": "60分钟收盘站上 21,105，随后回踩不破",
+        "trigger": 21330.0,
+        "trigger_text": "60分钟收盘站上 21,330，随后回踩不破",
         "entry": [
-          21065.0,
-          21110.0
+          21290.0,
+          21335.0
         ],
-        "stop": 20970.0,
+        "stop": 21140.0,
         "targets": [
-          21295.0,
-          21420.0
+          21615.0,
+          21765.0
         ],
-        "invalid": "60分钟重新跌破 20,970",
+        "invalid": "60分钟重新跌破 21,140",
         "confirmation": "突破不是买点本身；回踩确认后才执行"
       },
       "short": {
         "priority": "优先观察",
         "status": "未触发",
-        "trigger": 20980.0,
-        "trigger_text": "60分钟收盘跌破 20,980，随后反抽不过",
+        "trigger": 21140.0,
+        "trigger_text": "60分钟收盘跌破 21,140，随后反抽不过",
         "entry": [
-          20975.0,
-          21020.0
+          21135.0,
+          21180.0
         ],
-        "stop": 21115.0,
+        "stop": 21330.0,
         "targets": [
-          20580.0,
-          20665.0
+          20880.0,
+          20705.0
         ],
-        "invalid": "60分钟重新站上 21,115",
+        "invalid": "60分钟重新站上 21,330",
         "confirmation": "破位不是卖点本身；反抽确认后才执行"
       },
       "ari": {
@@ -268,7 +269,7 @@
         "momentum": "空头动量扩张"
       },
       "daily": {
-        "score": -2.54,
+        "score": -2.28,
         "bias": "偏空"
       },
       "url": "https://abysstrades.xyz/#detail?symbol=AL",
@@ -278,57 +279,57 @@
       "symbol": "ZN",
       "name": "沪锌",
       "sector": "有色",
-      "updated_at": "2026-11-27T09:20:27+08:00",
+      "updated_at": "2026-11-27T22:11:30+00:00",
       "quote": {
-        "last": 23740.0,
-        "change_pct": 0.017138,
-        "time": "2026-11-27 09:19:18",
-        "open_interest": 106557.0,
-        "volume": 114415.0
+        "last": 23915.0,
+        "change_pct": 0.0006276,
+        "time": "2026-11-30 01:00:00",
+        "open_interest": 95298.0,
+        "volume": 68719.0
       },
-      "score": -1.63,
+      "score": -1.73,
       "bias": "偏空",
       "tone": "down",
       "support": [
-        23665.0,
-        23615.0
+        23735.0,
+        23680.0
       ],
       "resistance": [
-        23760.0,
-        23925.0
+        23990.0,
+        24230.0
       ],
       "long": {
         "priority": "次选",
         "status": "未触发",
-        "trigger": 23780.0,
-        "trigger_text": "60分钟收盘站上 23,780，随后回踩不破",
+        "trigger": 24005.0,
+        "trigger_text": "60分钟收盘站上 24,005，随后回踩不破",
         "entry": [
-          23740.0,
-          23785.0
+          23970.0,
+          24010.0
         ],
-        "stop": 23635.0,
+        "stop": 23720.0,
         "targets": [
-          23980.0,
-          24115.0
+          24390.0,
+          24650.0
         ],
-        "invalid": "60分钟重新跌破 23,635",
+        "invalid": "60分钟重新跌破 23,720",
         "confirmation": "突破不是买点本身；回踩确认后才执行"
       },
       "short": {
         "priority": "优先观察",
         "status": "未触发",
-        "trigger": 23650.0,
-        "trigger_text": "60分钟收盘跌破 23,650，随后反抽不过",
+        "trigger": 23720.0,
+        "trigger_text": "60分钟收盘跌破 23,720，随后反抽不过",
         "entry": [
-          23645.0,
-          23685.0
+          23715.0,
+          23760.0
         ],
-        "stop": 23790.0,
+        "stop": 24005.0,
         "targets": [
-          23455.0,
-          23325.0
+          23335.0,
+          23075.0
         ],
-        "invalid": "60分钟重新站上 23,790",
+        "invalid": "60分钟重新站上 24,005",
         "confirmation": "破位不是卖点本身；反抽确认后才执行"
       },
       "ari": {
@@ -336,7 +337,7 @@
         "momentum": "空头动量扩张"
       },
       "daily": {
-        "score": -2.29,
+        "score": -2.26,
         "bias": "偏空"
       },
       "url": "https://abysstrades.xyz/#detail?symbol=ZN",
@@ -408,71 +409,72 @@
         "bias": "偏空"
       },
       "url": "https://abysstrades.xyz/#detail?symbol=PB",
-      "stale": false
+      "stale": true,
+      "fetch_error": "Expecting ',' delimiter: line 1 column 107321 (char 107320)"
     },
     {
       "symbol": "NI",
       "name": "沪镍",
       "sector": "有色",
-      "updated_at": "2026-11-27T09:19:59+08:00",
+      "updated_at": "2026-11-27T22:11:22+00:00",
       "quote": {
-        "last": 118900.0,
-        "change_pct": 0.028102,
-        "time": "2026-11-27 09:19:02",
-        "open_interest": 134688.0,
-        "volume": 175508.0
+        "last": 119040.0,
+        "change_pct": -0.0006716,
+        "time": "2026-11-30 01:00:00",
+        "open_interest": 123820.0,
+        "volume": 92957.0
       },
-      "score": -1.24,
-      "bias": "偏空",
-      "tone": "down",
+      "score": -1.08,
+      "bias": "震荡/等待",
+      "tone": "neutral",
       "support": [
-        118650.0,
-        117640.0
+        117810.0,
+        117350.0
       ],
       "resistance": [
-        119390.0,
-        119600.0
+        119550.0,
+        119740.0
       ],
       "long": {
         "priority": "次选",
         "status": "未触发",
-        "trigger": 119470.0,
-        "trigger_text": "60分钟收盘站上 119,470，随后回踩不破",
+        "trigger": 119640.0,
+        "trigger_text": "60分钟收盘站上 119,640，随后回踩不破",
         "entry": [
-          119290.0,
-          119490.0
+          119450.0,
+          119660.0
         ],
-        "stop": 118570.0,
+        "stop": 117720.0,
         "targets": [
-          120690.0,
-          121520.0
+          122190.0,
+          123930.0
         ],
-        "invalid": "60分钟重新跌破 118,570",
+        "invalid": "60分钟重新跌破 117,720",
         "confirmation": "突破不是买点本身；回踩确认后才执行"
       },
       "short": {
         "priority": "优先观察",
         "status": "未触发",
-        "trigger": 118570.0,
-        "trigger_text": "60分钟收盘跌破 118,570，随后反抽不过",
+        "trigger": 117720.0,
+        "trigger_text": "60分钟收盘跌破 117,720，随后反抽不过",
         "entry": [
-          118550.0,
-          118750.0
+          117700.0,
+          117910.0
         ],
-        "stop": 119470.0,
+        "stop": 119640.0,
         "targets": [
-          117350.0,
-          116520.0
+          115170.0,
+          113430.0
         ],
-        "invalid": "60分钟重新站上 119,470",
+        "invalid": "60分钟重新站上 119,640",
         "confirmation": "破位不是卖点本身；反抽确认后才执行"
       },
       "ari": {
-        "environment": "YELLOW · 过渡区",
-        "momentum": "动量过渡，等待方向"
+        "environment": "RED · 空头主场",
+        "momentum": "空头动量扩张"
       },
       "daily": {
-        "score": -2.36,
+        "score": -1.85,
         "bias": "偏空"
       },
       "url": "https://abysstrades.xyz/#detail?symbol=NI",
@@ -482,57 +484,57 @@
       "symbol": "SN",
       "name": "沪锡",
       "sector": "有色",
-      "updated_at": "2026-11-27T09:20:18+08:00",
+      "updated_at": "2026-11-27T22:11:27+00:00",
       "quote": {
-        "last": 289610.0,
-        "change_pct": 0.0093051,
-        "time": "2026-11-27 09:19:18",
-        "open_interest": 43457.0,
-        "volume": 176880.0
+        "last": 311020.0,
+        "change_pct": 0.0509918,
+        "time": "2026-11-30 01:00:00",
+        "open_interest": 38426.0,
+        "volume": 188754.0
       },
-      "score": -1.94,
-      "bias": "偏空",
-      "tone": "down",
+      "score": -1.09,
+      "bias": "震荡/等待",
+      "tone": "neutral",
       "support": [
-        288930.0,
-        277430.0
+        310750.0,
+        303240.0
       ],
       "resistance": [
-        291600.0,
-        298990.0
+        315260.0,
+        318000.0
       ],
       "long": {
         "priority": "次选",
         "status": "未触发",
-        "trigger": 292020.0,
-        "trigger_text": "60分钟收盘站上 292,020，随后回踩不破",
+        "trigger": 315700.0,
+        "trigger_text": "60分钟收盘站上 315,700，随后回踩不破",
         "entry": [
-          291070.0,
-          292120.0
+          314710.0,
+          315810.0
         ],
-        "stop": 288210.0,
+        "stop": 310300.0,
         "targets": [
-          298990.0,
-          300730.0
+          322980.0,
+          327940.0
         ],
-        "invalid": "60分钟重新跌破 288,210",
+        "invalid": "60分钟重新跌破 310,300",
         "confirmation": "突破不是买点本身；回踩确认后才执行"
       },
       "short": {
         "priority": "优先观察",
         "status": "未触发",
-        "trigger": 288510.0,
-        "trigger_text": "60分钟收盘跌破 288,510，随后反抽不过",
+        "trigger": 310300.0,
+        "trigger_text": "60分钟收盘跌破 310,300，随后反抽不过",
         "entry": [
-          288410.0,
-          289450.0
+          310190.0,
+          311300.0
         ],
-        "stop": 292310.0,
+        "stop": 315700.0,
         "targets": [
-          277430.0,
-          279830.0
+          303020.0,
+          298060.0
         ],
-        "invalid": "60分钟重新站上 292,310",
+        "invalid": "60分钟重新站上 315,700",
         "confirmation": "破位不是卖点本身；反抽确认后才执行"
       },
       "ari": {
@@ -540,14 +542,17 @@
         "momentum": "空头动量扩张"
       },
       "daily": {
-        "score": -2.57,
+        "score": -2.23,
         "bias": "偏空"
       },
       "url": "https://abysstrades.xyz/#detail?symbol=SN",
       "stale": false
     }
   ],
-  "errors": [],
+  "errors": [
+    "AU: 沿用上一版（Command '['curl', '-L', '--max-time', '25', '--retry', '2', '-sS', 'https://abysstrades.xyz/data/symbols/AU.json']' timed out after 90 seconds）",
+    "PB: 沿用上一版（Expecting ',' delimiter: line 1 column 107321 (char 107320)）"
+  ],
   "xs": {
     "active": true,
     "status": "不可记账、不可交易",
